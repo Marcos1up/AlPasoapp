@@ -33,7 +33,7 @@ export function HeroSection({ onViewMenu }: HeroSectionProps) {
       </div>
 
       {/* Content */}
-      <div className="relative h-full container mx-auto px-12 flex items-center">
+      <div className="relative h-full container mx-auto px-4 flex items-center">
         <motion.div
           className="max-w-4xl"
           initial={{ opacity: 0, y: 20 }}

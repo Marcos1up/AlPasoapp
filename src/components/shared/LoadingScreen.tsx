@@ -9,7 +9,7 @@ export function LoadingScreen() {
         animate={{ opacity: 1, scale: 2 }}
         transition={{
           duration: 0.3,
-          ease: [0, 0.71, 0.2, 1.01],
+          ease: [0, 0.71, 0.2, 1.01], //easeInOut para que sea mas suave
           scale: {
             type: "spring",
             damping: 5,
