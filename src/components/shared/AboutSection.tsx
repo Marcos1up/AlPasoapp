@@ -4,18 +4,19 @@ import { Utensils, Clock, Truck } from "lucide-react";
 const features = [
   {
     icon: Utensils,
-    title: "Quality Food",
-    description: "Made with fresh, locally-sourced ingredients daily",
+    title: "Comida de calidad",
+    description:
+      "Elaborado con ingredientes frescos de origen local todos los días.",
   },
   {
     icon: Clock,
-    title: "Fast Service",
-    description: "From our kitchen to your doorstep in 30 minutes or less",
+    title: "Servicio rápido",
+    description: "De nuestra cocina a tu puerta en 30 minutos o menos",
   },
   {
     icon: Truck,
-    title: "Free Delivery",
-    description: "No delivery fee on orders over $20",
+    title: "Entrega inmediata",
+    description: "Sin cargo de envío en pedidos superiores a $20.000",
   },
 ];
 
@@ -30,10 +31,12 @@ export function AboutSection() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-2xl mx-auto mb-16"
         >
-          <h2 className="text-3xl font-bold mb-4">Why Choose AlPaso?</h2>
+          <h2 className="text-3xl text-red-600 font-bold mb-4">
+            ¿Por qué elegir AlPaso?
+          </h2>
           <p className="text-gray-600">
-            We are committed to delivering not just food, but an exceptional
-            dining experience right to your doorstep.
+            Nos comprometemos a entregar no solo comida, sino también una
+            experiencia gastronómica excepcional directamente a su puerta.
           </p>
         </motion.div>
 
@@ -45,7 +48,7 @@ export function AboutSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
-              className="text-center"
+              className="text-center text-red-600"
             >
               <div className="bg-red-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <feature.icon className="h-8 w-8 text-red-600" />

@@ -14,7 +14,7 @@ const heroImages = [
 
 export function HeroSection({ onViewMenu }: HeroSectionProps) {
   return (
-    <section className="relative h-[90vh] min-h-[600px] overflow-hidden">
+    <section className="relative h-[100vh] min-h-[600px] overflow-hidden">
       {/* Background Carousel */}
       <div className="absolute inset-0">
         {heroImages.map((image, index) => (
@@ -33,31 +33,33 @@ export function HeroSection({ onViewMenu }: HeroSectionProps) {
       </div>
 
       {/* Content */}
-      <div className="relative h-full container mx-auto px-4 flex items-center">
+      <div className="relative h-full container mx-auto px-12 flex items-center">
         <motion.div
-          className="max-w-2xl"
+          className="max-w-4xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-            Delicious Food, <span className="text-red-500">Delivered Fast</span>
+          <h1 className="text-6xl md:text-7xl font-bold text-white mb-7">
+            Comida deliciosa,{" "}
+            <span className="text-red-500">entregada rápidamente</span>
           </h1>
           <p className="text-xl text-white/90 mb-8">
-            Your favorite local dishes, just a click away. Experience the best
-            of local cuisine, delivered right to your doorstep.
+            Tus platos locales favoritos, a solo un clic de distancia. Disfruta
+            de lo mejor de la cocina local, directamente en tu puerta.
           </p>
+
           <div className="flex gap-4">
-            <Button size="lg" className="bg-red-600 hover:bg-red-700">
-              Order Now <ArrowRight className="ml-2" />
+            <Button size="lg" className="bg-red-600 hover:bg-red-700 ">
+              Ordene ahora <ArrowRight className="ml-2" />
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="text-white border-white hover:bg-white/50"
+              className="text-black border-white bg-white hover:bg-white/80"
               onClick={onViewMenu}
             >
-              View Menu
+              Ver Menú
             </Button>
           </div>
         </motion.div>

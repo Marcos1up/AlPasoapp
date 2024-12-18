@@ -19,7 +19,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const products = [
   {
     id: 1,
-    name: "Classic PEPE",
+    name: "Hamburguesa clásica",
     price: 8.99,
     image:
       "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=2099",
@@ -28,7 +28,7 @@ const products = [
   },
   {
     id: 2,
-    name: "Chicken Wings",
+    name: "Alitas de pollo frito",
     price: 12.99,
     image:
       "https://images.unsplash.com/photo-1567620832903-9fc6debc209f?q=80&w=2080",
@@ -37,7 +37,7 @@ const products = [
   },
   {
     id: 3,
-    name: "Supreme Pizza",
+    name: "Pizza pepperoni",
     price: 15.99,
     image:
       "https://images.unsplash.com/photo-1604382355076-af4b0eb60143?q=80&w=2073",
@@ -49,17 +49,17 @@ const products = [
 const locations = [
   {
     id: 1,
-    name: "Downtown",
-    address: "123 Main St",
-    hours: "10:00 AM - 10:00 PM",
-    phone: "+1 234-567-8900",
+    name: "Microcentro",
+    address: "Av. Corrientes 123",
+    hours: "10:00 - 22:00",
+    phone: "+54 11 2345-6789",
   },
   {
     id: 2,
-    name: "West Side",
-    address: "456 Oak Ave",
-    hours: "11:00 AM - 11:00 PM",
-    phone: "+1 234-567-8901",
+    name: "Palermo",
+    address: "Calle 4567",
+    hours: "11:00 - 23:00",
+    phone: "+54 11 3456-7890",
   },
 ];
 
@@ -72,7 +72,7 @@ export default function Home() {
     const checkOpenStatus = () => {
       const now = new Date();
       const hour = now.getHours();
-      setIsOpen(hour >= 10 && hour < 22);
+      setIsOpen(hour >= 10 && hour < 22); //para abrir entre 10 e 22
     };
 
     checkOpenStatus();
@@ -85,7 +85,7 @@ export default function Home() {
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "smooth" }); //scroll clasico
   };
 
   return (
@@ -108,24 +108,25 @@ export default function Home() {
               >
                 <Logo />
               </button>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4 text-black">
                 <Badge
                   variant="secondary"
                   className={cn(
-                    "font-semibold",
+                    "font-semibold px-3 py-2 text-green-900 ring-1 ring-inset ring-green-600/20",
                     isOpen ? "bg-green-500" : "bg-yellow-500"
                   )}
                 >
-                  {isOpen ? "Open Now" : "Closed"}
+                  {isOpen ? "Abierto ahora" : "Cerrado"}
                 </Badge>
                 <Button
                   variant="secondary"
+                  className="text-black border-white bg-white hover:bg-white/80 rounded-lg"
                   onClick={() =>
-                    (window.location.href = "https://wa.me/1234567890")
+                    window.open("https://wa.me/1234567890", "_blank")
                   }
                 >
                   <Phone className="h-4 w-4 mr-2" />
-                  Contact Us
+                  Contáctenos
                 </Button>
               </div>
             </div>
@@ -152,11 +153,12 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <h2 className="text-3xl font-bold mb-8 text-center">
-                  Our Menu
+                <h2 className="text-3xl text-red-600 font-bold mb-8 text-center">
+                  Nuestro menú
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {products.map((product, index) => (
+                    //mapear todos los productos
                     <motion.div
                       key={product.id}
                       initial={{ opacity: 0, y: 20 }}
@@ -181,21 +183,24 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <h2 className="text-3xl font-bold mb-8 text-center">
-                  Our Locations
+                <h2 className="text-3xl text-red-600 font-bold mb-8 text-center">
+                  Nuestros locales
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                  {locations.map((location, index) => (
-                    <motion.div
-                      key={location.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: index * 0.2 }}
-                    >
-                      <LocationCard location={location} />
-                    </motion.div>
-                  ))}
+                  {locations.map(
+                    //mapear los datos de locations
+                    (location, index) => (
+                      <motion.div
+                        key={location.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: index * 0.2 }}
+                      >
+                        <LocationCard location={location} />
+                      </motion.div>
+                    )
+                  )}
                 </div>
               </motion.div>
             </div>
@@ -208,24 +213,24 @@ export default function Home() {
                 <div>
                   <Logo />
                   <p className="mt-4 text-gray-400">
-                    Bringing local flavors to your doorstep
+                    Llevamos sabores locales a tu puerta.
                   </p>
                 </div>
                 <div>
-                  <h3 className="font-bold mb-4">Contact Us</h3>
+                  <h3 className="font-bold mb-4">¡Contáctenos!</h3>
                   <Button
                     variant="outline"
-                    className="text-white border-white hover:bg-white/10"
-                    onClick={() =>
-                      (window.location.href = "https://wa.me/1234567890")
+                    className="text-white border-green-900 bg-green-500 hover:bg-green/50"
+                    onClick={
+                      () => window.open("https://wa.me/1234567890", "_blank") // sin contacto real
                     }
                   >
                     <Phone className="h-4 w-4 mr-2" />
-                    WhatsApp Support
+                    Soporte de whatsApp
                   </Button>
                 </div>
                 <div>
-                  <h3 className="font-bold mb-4">Follow Us</h3>
+                  <h3 className="font-bold mb-4">¡Síganos!</h3>
                   <div className="flex gap-4">
                     <a
                       href="#"
@@ -249,9 +254,10 @@ export default function Home() {
                 </div>
               </div>
               <div className="border-t border-gray-800 pt-8 text-center">
+                {/* se agrego el año actual */}
                 <p className="text-gray-400">
                   © {new Date().getFullYear()} AlPaso App. All rights reserved.
-                </p>
+                </p>{" "}
               </div>
             </div>
           </footer>

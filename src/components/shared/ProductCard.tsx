@@ -21,23 +21,29 @@ export function ProductCard({ product }: ProductProps) {
           className="w-full h-full object-cover"
         />
       </div>
+
       <CardHeader>
         <div className="flex justify-between items-start">
-          <h3 className="text-xl font-semibold">{product.name}</h3>
+          <h3 className="text-xl text-black font-semibold">{product.name}</h3>
           <div className="flex items-center gap-1">
             <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-            <span className="text-sm font-medium">{product.rating}</span>
+            <span className="text-sm text-gray-600 font-medium">
+              {product.rating}
+            </span>
           </div>
         </div>
       </CardHeader>
+
       <CardContent>
         <p className="text-sm text-gray-600 mb-4">
           {product.ingredients.join(", ")}
         </p>
         <div className="flex justify-between items-center">
-          <span className="text-lg font-bold">${product.price.toFixed(2)}</span>
+          <span className="text-lg text-green-600 font-bold">
+            ${product.price.toFixed(2)}
+          </span>
           <button className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors">
-            Add to Cart
+            Añadir al carrito
           </button>
         </div>
       </CardContent>
