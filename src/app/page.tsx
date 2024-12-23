@@ -40,7 +40,7 @@ const products = [
   },
   {
     id: 2,
-    name: "sandwich de milanesa",
+    name: "Sandwich de milanesa",
     price: 8300,
     image: milanesa.src,
     ingredients: [
