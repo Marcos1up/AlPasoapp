@@ -1,5 +1,8 @@
-import { Star } from "lucide-react";
+import { useState } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Toast } from "../ui/toast";
+
+import { Star } from "lucide-react";
 
 interface ProductProps {
   product: {
@@ -12,6 +15,19 @@ interface ProductProps {
 }
 
 export function ProductCard({ product }: ProductProps) {
+  const [toasts, setToasts] = useState<string[]>([]);
+
+  const handleCart = () => {
+    setToasts((prev) => [
+      ...prev,
+      "Servicio interrumpido. Intente de nuevo más tarde.",
+    ]);
+  };
+
+  const closeToast = (index: number) => {
+    setToasts((prev) => prev.filter((_, i) => i !== index));
+  };
+
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow">
       <div className="relative h-48">
@@ -34,6 +50,7 @@ export function ProductCard({ product }: ProductProps) {
         </div>
       </CardHeader>
 
+      {/* Product card */}
       <CardContent>
         <p className="text-sm text-gray-600 mb-4">
           {product.ingredients.join(", ")}
@@ -42,11 +59,25 @@ export function ProductCard({ product }: ProductProps) {
           <span className="text-lg text-green-600 font-bold">
             ${product.price.toFixed(2)}
           </span>
-          <button className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors">
+          <button
+            className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors"
+            onClick={handleCart}
+          >
             Añadir al carrito
           </button>
         </div>
       </CardContent>
+
+      {/* Alert message */}
+      {toasts.map((msg, i) => (
+        <Toast
+          key={i}
+          message={msg}
+          index={i}
+          duration={5000}
+          onClose={() => closeToast(i)}
+        />
+      ))}
     </Card>
   );
 }

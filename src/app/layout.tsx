@@ -15,6 +15,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "AlPaso App - Comida local a tu puerta",
   description: "Llevamos sabores locales a tu puerta.",
+  icons: {
+    icon: "/pizza_alpasosvg.svg",
+    shortcut: "/pizza_alpasosvg.svg",
+  },
 };
 
 export default function RootLayout({

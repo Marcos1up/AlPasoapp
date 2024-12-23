@@ -1,4 +1,7 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Toast } from "../ui/toast";
+
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -6,6 +9,7 @@ interface HeroSectionProps {
   onViewMenu: () => void;
 }
 
+// Carrousel images
 const heroImages = [
   "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070",
   "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=2074",
@@ -13,9 +17,23 @@ const heroImages = [
 ];
 
 export function HeroSection({ onViewMenu }: HeroSectionProps) {
+  const [toasts, setToasts] = useState<string[]>([]);
+
+  const handleOrderNow = () => {
+    setToasts((prev) => [
+      ...prev,
+      "Servicio de pedido rápido interrumpido. Intente de nuevo más tarde.",
+    ]);
+  };
+
+  // Cerrar mensaje de alerta
+  const closeToast = (index: number) => {
+    setToasts((prev) => prev.filter((_, i) => i !== index));
+  };
+
   return (
     <section className="relative h-[100vh] min-h-[600px] overflow-hidden">
-      {/* Background Carousel */}
+      {/* Carrousel */}
       <div className="absolute inset-0">
         {heroImages.map((image, index) => (
           <div
@@ -49,10 +67,16 @@ export function HeroSection({ onViewMenu }: HeroSectionProps) {
             de lo mejor de la cocina local, directamente en tu puerta.
           </p>
 
+          {/* Buttons */}
           <div className="flex gap-4">
-            <Button size="lg" className="bg-red-600 hover:bg-red-700 ">
+            <Button
+              size="lg"
+              className="bg-red-600 hover:bg-red-700"
+              onClick={handleOrderNow}
+            >
               Ordene ahora <ArrowRight className="ml-2" />
             </Button>
+
             <Button
               size="lg"
               variant="outline"
@@ -64,6 +88,17 @@ export function HeroSection({ onViewMenu }: HeroSectionProps) {
           </div>
         </motion.div>
       </div>
+
+      {/* Alert message */}
+      {toasts.map((msg, i) => (
+        <Toast
+          key={i}
+          message={msg}
+          index={i}
+          duration={5000}
+          onClose={() => closeToast(i)}
+        />
+      ))}
     </section>
   );
 }

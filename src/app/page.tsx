@@ -13,6 +13,13 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
+import hamburger from "@/assets/hamburguesa.webp";
+import milanesa from "@/assets/milanesa.webp";
+import lomito from "@/assets/lomito.webp";
+import pizza from "@/assets/pizza.webp";
+import peceto from "@/assets/peceto.webp";
+import promo from "@/assets/promo_fernet.webp";
+
 import { Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -20,29 +27,72 @@ const products = [
   {
     id: 1,
     name: "Hamburguesa clásica",
-    price: 8.99,
-    image:
-      "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=2099",
-    ingredients: ["Beef patty", "Lettuce", "Tomato", "Cheese", "Special sauce"],
-    rating: 4.8,
+    price: 8000,
+    image: hamburger.src,
+    ingredients: [
+      "Carne de vaca",
+      "Lechuga",
+      "Tomate",
+      "Cebolla",
+      "Encurtidos",
+    ],
+    rating: 4.2,
   },
   {
     id: 2,
-    name: "Alitas de pollo frito",
-    price: 12.99,
-    image:
-      "https://images.unsplash.com/photo-1567620832903-9fc6debc209f?q=80&w=2080",
-    ingredients: ["Chicken wings", "BBQ sauce", "Ranch dip"],
-    rating: 4.6,
+    name: "sandwich de milanesa",
+    price: 8300,
+    image: milanesa.src,
+    ingredients: [
+      "Milanesa",
+      "Huevo frito",
+      "Mayonesa casera",
+      "Jamón",
+      "Lechuga",
+      "Tomate",
+      "Papas fritas",
+    ],
+    rating: 4.4,
   },
   {
     id: 3,
+    name: "Lomito rústico con papas",
+    price: 9000,
+    image: lomito.src,
+    ingredients: [
+      "Lomo",
+      "Huevo frito",
+      "Mayonesa casera",
+      "Jamón",
+      "Lechuga",
+      "Tomate",
+      "Papas fritas",
+    ],
+    rating: 3.9,
+  },
+  {
+    id: 4,
     name: "Pizza pepperoni",
-    price: 15.99,
-    image:
-      "https://images.unsplash.com/photo-1604382355076-af4b0eb60143?q=80&w=2073",
-    ingredients: ["Mozzarella", "Pepperoni", "Bell peppers", "Mushrooms"],
+    price: 9500,
+    image: pizza.src,
+    ingredients: ["Mozzarella", "Pepperoni", "Jamón", "Champiñones"],
+    rating: 3.9,
+  },
+  {
+    id: 5,
+    name: "Sandwich de peceto",
+    price: 3800,
+    image: peceto.src,
+    ingredients: ["Peceto", "Mayonesa casera", "Jamón", "Lechuga", "Tomate"],
     rating: 4.9,
+  },
+  {
+    id: 6,
+    name: "Promo de Fernet con Coca",
+    price: 14000,
+    image: promo.src,
+    ingredients: ["Fernet 2lt", "Coca Cola 3lt", "Hielo"],
+    rating: 4.8,
   },
 ];
 
@@ -58,7 +108,7 @@ const locations = [
     id: 2,
     name: "Palermo",
     address: "Calle 4567",
-    hours: "11:00 - 23:00",
+    hours: "16:00 - 23:00",
     phone: "+54 11 3456-7890",
   },
 ];
@@ -85,7 +135,7 @@ export default function Home() {
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" }); //scroll clasico
+    window.scrollTo({ top: 0, behavior: "smooth" }); // clasico scroll to top
   };
 
   return (
@@ -108,6 +158,7 @@ export default function Home() {
               >
                 <Logo />
               </button>
+
               <div className="flex items-center gap-4 text-black">
                 <Badge
                   variant="secondary"
@@ -118,9 +169,10 @@ export default function Home() {
                 >
                   {isOpen ? "Abierto ahora" : "Cerrado"}
                 </Badge>
+
                 <Button
                   variant="secondary"
-                  className="text-black border-white bg-white hover:bg-white/80 rounded-lg"
+                  className="hidden md:flex text-black border-white bg-white hover:bg-white/80 rounded-lg"
                   onClick={() =>
                     window.open("https://wa.me/1234567890", "_blank")
                   }
@@ -156,6 +208,7 @@ export default function Home() {
                 <h2 className="text-3xl text-red-600 font-bold mb-8 text-center">
                   Nuestro menú
                 </h2>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {products.map((product, index) => (
                     //mapear todos los productos
@@ -186,6 +239,7 @@ export default function Home() {
                 <h2 className="text-3xl text-red-600 font-bold mb-8 text-center">
                   Nuestros locales
                 </h2>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                   {locations.map(
                     //mapear los datos de locations
@@ -212,10 +266,12 @@ export default function Home() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                 <div>
                   <Logo />
+
                   <p className="mt-4 text-gray-400">
                     Llevamos sabores locales a tu puerta.
                   </p>
                 </div>
+
                 <div>
                   <h3 className="font-bold mb-4">¡Contáctenos!</h3>
                   <Button
@@ -229,6 +285,7 @@ export default function Home() {
                     Soporte de whatsApp
                   </Button>
                 </div>
+
                 <div>
                   <h3 className="font-bold mb-4">¡Síganos!</h3>
                   <div className="flex gap-4">
@@ -253,6 +310,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
+
               <div className="border-t border-gray-800 pt-8 text-center">
                 {/* se agrego el año actual */}
                 <p className="text-gray-400">
